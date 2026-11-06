@@ -1,0 +1,23 @@
+[package]
+name = "lp-locker"
+version = "0.1.0"
+description = "Permanent, generic SPL/Token-2022 lock vault: deposit-only, no withdrawal path, no admin, meant to be deployed with its upgrade authority revoked"
+edition = "2021"
+
+[lib]
+crate-type = ["cdylib", "lib"]
+name = "lp_locker"
+
+[features]
+default = []
+cpi = ["no-entrypoint"]
+no-entrypoint = []
+no-idl = []
+no-log-ix-name = []
+idl-build = ["anchor-lang/idl-build", "anchor-spl/idl-build", "dex-pool/idl-build"]
+
+[dependencies]
+anchor-lang = { version = "0.31.1", features = ["init-if-needed"] }
+anchor-spl = { version = "0.31.1", features = ["token_2022"] }
+
+dex-pool = { path = "../dex-pool", features = ["cpi"] }
